@@ -1,0 +1,12 @@
+.container{
+    justify-content:center;
+    align-items:center;
+    margin-top:50px;
+}
+.card.text-white.bg-dark.mb-3
+{
+    max-width: 20rem;
+    margin:auto;
+    margin-top:20px;
+    border-radius:30px;
+}
