@@ -1,0 +1,105 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/5.2.3/morph/bootstrap.min.css"
+    integrity="sha512-9kbRw+1/EdzoBB85Lhvmksr87jNAj6Vl4ebRgJvz+1mUmRE9y78ROqc1mXSMsbOyxwip+U7AAZldtOR3lartQw=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="{% static 'home css.css' %}">
+    <title>Document</title>
+    <style>
+        
+    </style>
+</head>
+<body>
+  <div>
+  {% for message in messages %}
+            {% ifequal message.tags 'success' %}
+            <div class="alert alert-dismissible alert-success" id="but1">
+              <button type="button" class="btn-close" onclick="demoShow()" data-bs-dismiss="alert"></button>
+              <strong>{{message}}</strong>
+            </div>
+            {% endifequal %}
+            {% ifequal message.tags 'error' %}
+            <div class="alert alert-dismissible alert-danger" id="but1">
+              <button type="button" class="btn-close" onclick="demoShow()" data-bs-dismiss="alert"></button>
+              <strong>{{message}}</strong>
+            </div>
+            {% endifequal %}
+        {% endfor %}
+        </div>
+  <div style="float:left;width:45%; margin-left:5%;margin-top:3%">
+    <h2>Profile</h2>
+    <form style="color:black;" action="{% url 'profile' uid %}" method="POST" class="rule-form">
+        {% csrf_token %}
+        <fieldset>
+          <div class="form-group">
+            <label for="exampleInputEmail1" class="form-label mt-4">Username</label>
+            <input type="text" class="form-control" name="username" id="exampleInputEmail1" style="color:black" aria-describedby="emailHelp" value="{{user.username}}">
+          </div>
+          <div class="form-group">
+            <label for="exampleInputEmail1" class="form-label mt-4">Full Name</label>
+            <input type="text" class="form-control" name="fullname" id="exampleInputEmail2" style="color:black" aria-describedby="emailHelp" value="{{user.first_name}}" placeholder="Full Name">
+          </div>
+          <div class="form-group">
+            <label for="Email" class="form-label mt-4">Email</label>
+              <input type="text" disabled name="email" class="form-control" style="color:black" id="Email" value="{{user.email}}">
+           
+          </div>
+          <div class="form-group">
+            <button type="button" style="margin-top:3%;margin-bottom:3%" class="btn btn-primary"> Click to Update Password</button>
+            <input type="password" disabled class="form-control" name="password" style="color:black;" id="exampleInputPassword1" placeholder="Password" value="{{user.password}}">
+          </div>
+          <button type="submit" style="margin-top:3%" class="btn btn-success">Save Changes</button>
+        </fieldset>
+      </form>
+    </div>
+    <div style="float:right;width:40%;margin-top:3%;margin-right:5%">
+      <h2>Tests Taken</h2>
+        <table class="table table-hover" style="color:black;">
+          {% for res in result1 %}
+          <thead style="text-align:center">
+            <tr>
+              <th colspan="2">{{res.tdate}}</th>
+              </tr>
+              <tr>
+              <th scope="col">Category</th>
+              <th scope="col">Percentage</th>
+            </tr>
+          </thead>
+          <tbody style="text-align:center">
+            {% for res1 in result %}
+            {% ifequal res1.tdate  res.tdate %}
+            <tr class="table-active">
+              <th scope="row">{{res1.tcat.catname}}</th>
+              <td>{{res1.tper}}</td>
+            </tr>
+            {% endifequal %}
+            {% endfor %}
+          </tbody>
+          {% endfor %}
+        </table>
+      </div>
+</body>
+<script>
+$('form.rule-form button.btn-primary').click(function(e) {
+    var $btn = $(this);
+    if ($btn.text() !== 'Submit') {
+      e.preventDefault();
+      $btn.closest('.form-group').find('input')
+        .prop('disabled', false)
+    }
+  });
+
+    function demoShow() {   
+      document.getElementById("but1").style.display="none";
+      
+      }
+
+</script>
+</html>

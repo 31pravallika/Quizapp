@@ -1,0 +1,159 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/5.2.3/morph/bootstrap.min.css"
+    integrity="sha512-9kbRw+1/EdzoBB85Lhvmksr87jNAj6Vl4ebRgJvz+1mUmRE9y78ROqc1mXSMsbOyxwip+U7AAZldtOR3lartQw=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="{% static 'home css.css' %}">
+    <title>Document</title>
+    <style>
+        
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="../">Quizapp</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarColor02">
+            <ul class="navbar-nav me-auto">
+              <li class="nav-item">
+                <a class="nav-link active" href="{% url 'home' %}">Home
+                  <span class="visually-hidden">(current)</span>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">About</a>
+              </li>
+              
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" onclick="dropdown()">Courses</a>
+                <div class="dropdown-menu" id="dropdown" style="position:absolute; inset: 0px auto auto 0px; margin: 0px; transform: translate3d(0px, 42px, 0px);" data-popper-placement="bottom-start">
+                  <a class="dropdown-item" href="{% url 'quiz' cid=1 %}"><b>Data Structures</b></a>
+                  <a class="dropdown-item" href="{% url 'quiz' cid=2 %}"><b>OOPS</b></a>
+                  <a class="dropdown-item" href="{% url 'quiz' cid=3 %}"><b>Algorithms</b></a>
+                  <a class="dropdown-item" href="{% url 'quiz' cid=4 %}"><b>Operating System</b></a>
+                  <a class="dropdown-item" href="{% url 'quiz' cid=5 %}"><b>DBMS</b></a>
+                  <a class="dropdown-item" href="{% url 'quiz' cid=6 %}"><b>Computer Networks</b></a>
+                  <!-- <div class="dropdown-divider"></div>
+                  <a class="dropdown-item" href="#">Separated link</a> -->
+                </div>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" onclick="dropdown1()">Add questions</a>
+                <div class="dropdown-menu" id="dropdown1" style="position:absolute; inset: 0px auto auto 0px; margin: 0px; transform: translate3d(0px, 42px, 0px);" data-popper-placement="bottom-start">
+                  <a class="dropdown-item" href="{% url 'add' cid=1 %}"><b>Data Structures</b></a>
+                  <a class="dropdown-item" href="{% url 'add' cid=2 %}"><b>OOPS</b></a>
+                  <a class="dropdown-item" href="{% url 'add' cid=3 %}"><b>Algorithms</b></a>
+                  <a class="dropdown-item" href="{% url 'add' cid=4 %}"><b>Operating System</b></a>
+                  <a class="dropdown-item" href="{% url 'add' cid=5 %}"><b>DBMS</b></a>
+                  <a class="dropdown-item" href="{% url 'add' cid=6 %}"><b>Computer Networks</b></a>
+                  <!-- <div class="dropdown-divider"></div>
+                  <a class="dropdown-item" href="#">Separated link</a> -->
+                </div>
+              </li>
+            </ul>
+            <form class="d-flex">
+              <!-- <input class="form-control me-sm-2" type="search" placeholder="Search"> -->
+              {% if user.is_authenticated %}
+              <a href="{% url 'profile' uid=user.id %}"><button type="button" class="btn btn-dark">Hello, {{user.username}}</button></a>
+                &nbsp;&nbsp;&nbsp;
+              <a href="{% url 'logout' %}"><button type="button" class="btn btn-dark">logout</button></a>
+              {% else %}
+              <a href="{% url 'login' %}"><button type="button" class="btn btn-dark">Login</button></a>
+                &nbsp;&nbsp;&nbsp;
+              <a href="{% url 'register' %}"><button type="button" class="btn btn-dark">Register</button></a>
+              {% endif %}
+            </form>
+          </div>
+        </div>
+      </nav>
+      <section class="container">
+        <div class="row">
+        <div class="col-lg-4">
+            <div class="bs-component">
+            <div class="card text-white bg-dark mb-3">
+                <div class="card-header"></div>
+                <div class="card-body">
+                  <h4 class="card-title"><a href="{% url 'quiz' cid=1 %}"><button type="button" class="btn btn-secondary">DATA STRUCTURES</button></a></h4>
+                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                </div>
+                </div>
+                 <div class="card text-white bg-dark mb-3">
+                <div class="card-header"></div>
+                <div class="card-body">
+                  <h4 class="card-title"><a href="{% url 'quiz' cid=2 %}"><button type="button" class="btn btn-secondary">OOPS</button></a></h4>
+                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                </div>
+                </div>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="bs-component">
+                <div class="card text-white bg-dark mb-3">
+                    <div class="card-header"></div>
+                    <div class="card-body">
+                      <h4 class="card-title"><a href="{% url 'quiz' cid=4 %}"><button type="button" class="btn btn-secondary">OPERATING SYSTEM</button></a></h4>
+                      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    </div>
+                    </div>
+                     <div class="card text-white bg-dark mb-3">
+                    <div class="card-header"></div>
+                    <div class="card-body">
+                      <h4 class="card-title"><a href="{% url 'quiz' cid=6 %}"><button type="button" class="btn btn-secondary">COMPUTER NETWORKS</button></a></h4>
+                      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    </div>
+                    </div>
+    
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="bs-component">
+                    <div class="card text-white bg-dark mb-3">
+                        <div class="card-header"></div>
+                        <div class="card-body">
+                          <h4 class="card-title"><a href="{% url 'quiz' cid=3 %}"><button type="button" class="btn btn-secondary">ALGORITHMS</button></a></h4>
+                          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                        </div>
+                        </div>
+                         <div class="card text-white bg-dark mb-3">
+                        <div class="card-header"></div>
+                        <div class="card-body">
+                          <h4 class="card-title"><a href="{% url 'quiz' cid=5 %}"><button type="button" class="btn btn-secondary">DBMS</button></a></h4>
+                          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                        </div>
+                        </div>
+                       
+                        </div>
+                    </div> 
+                </div>
+      </section>
+      <!-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/2.0.0/js/bootstrap-dropdown.js"></script> -->
+      <script>
+       
+        function dropdown(){
+          var element=document.getElementById("dropdown");
+           element.classList.toggle("show");
+        }
+        function dropdown1(){
+          var element=document.getElementById("dropdown1");
+           element.classList.toggle("show");
+        }
+       /*  document.documentElement.addEventListener("click", function () {
+          var element=document.getElementById("dropdown");
+          if (element.classList.contains("show")) {
+            dropdown();
+          }
+        });*/
+    
+    </script>
+    </body>
+</html>

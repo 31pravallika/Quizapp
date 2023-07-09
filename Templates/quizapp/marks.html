@@ -1,0 +1,33 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/5.2.3/morph/bootstrap.min.css" integrity="sha512-9kbRw+1/EdzoBB85Lhvmksr87jNAj6Vl4ebRgJvz+1mUmRE9y78ROqc1mXSMsbOyxwip+U7AAZldtOR3lartQw=="
+    crossorigin="anonymous"referrerpolicy="no-referrer" />
+    <title>Document</title>
+</head>
+<body>
+    <ul class="list-group" style="width:500px;position:relative;margin:15% auto;">
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          Correct
+          <span class="badge bg-primary rounded-pill">{{count}}</span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          Incorrect
+          <span class="badge bg-primary rounded-pill">{{count1}}</span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          Total Marks
+          <span class="badge bg-primary rounded-pill">{{count}}</span>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+            Percentage
+            <span class="badge bg-primary rounded-pill">{{percentage}}</span>
+        </li>
+        <button type="button" class="btn btn-outline-Secondary"><a href="{% url 'correct' cid %}">See Correct Answers</a></button>
+      </ul>
+      
+</body>
+</html>

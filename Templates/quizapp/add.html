@@ -1,0 +1,52 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/5.2.3/morph/bootstrap.min.css" integrity="sha512-9kbRw+1/EdzoBB85Lhvmksr87jNAj6Vl4ebRgJvz+1mUmRE9y78ROqc1mXSMsbOyxwip+U7AAZldtOR3lartQw=="
+    crossorigin="anonymous"referrerpolicy="no-referrer" />
+    <title>Document</title>
+</head>
+<body>
+    <div class="container">
+        <form action="{% url 'add' cid=cid %}" method="POST">
+            {% csrf_token %}
+            
+            <fieldset>
+                <div class="form-group">
+                    <label for="question" class="form-label mt-4">Enter Question:</label>
+                    <textarea class="form-control" id="question" name="question" rows="3" required></textarea>
+                  </div>
+                  <div class="form-group">
+                    <label for="question" class="form-label mt-4">Option1:</label>
+                    <textarea class="form-control" id="question" name="option1" rows="1" required></textarea>
+                  </div>
+                  <div class="form-group">
+                    <label for="question" class="form-label mt-4">Option2:</label>
+                    <textarea class="form-control" id="question" name="option2" rows="1" required></textarea>
+                  </div>
+                  <div class="form-group">
+                    <label for="question" class="form-label mt-4">Option3:</label>
+                    <textarea class="form-control" id="question" name="option3" rows="1" required></textarea>
+                  </div>
+                  <div class="form-group">
+                    <label for="question" class="form-label mt-4">Option4:</label>
+                    <textarea class="form-control" id="question" name="option4" rows="1"></textarea>
+                  </div>
+              <div class="form-group">
+                <label for="correctoption" class="form-label mt-4">Correct Option</label>
+                <select class="form-select" name="correctoption" id="correctoption">
+                  <option>1</option>
+                  <option>2</option>
+                  <option>3</option>
+                  <option>4</option>
+                </select>
+              </div>
+              <button type="submit" class="btn btn-primary">Submit</button>
+            </fieldset>
+          </form>
+</div>
+</body>
+</html>
